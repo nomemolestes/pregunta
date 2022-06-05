@@ -6,13 +6,12 @@
 <head>
 <meta charset="UTF-8">
 <title>getNoticeBypage</title>
-</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+ </head>
 <body>
 <div class="container">
-<div class="jombotron">
 	<h2>공지사항 목록</h2>
-	<table>
-	<c:forEach var="n" items="${list}">
+ 	 <table class="table table-dark">
 		<thead>
 			<tr>
 				<th>글번호</th>
@@ -22,6 +21,7 @@
 			</tr>
 		</thead>
 		<tbody>
+			<c:forEach var="n" items="${list}">
 			<tr>
 				<td>${n.noticeNo}</td>
 				<td>
@@ -30,19 +30,18 @@
 				<td>${n.noticeContent}</td>
 				<td>${n.createDate}</td>
 			</tr>
-		</tbody>
 		</c:forEach>
+		</tbody>
 	</table>
-	<ul class="pager">
-	<c:if test="${current>1}">
-		<li class="previous"><a href="${pageContext.request.contextPath}/getNoticeBypage?currentPage=${currentPage-1}">이전</a></li>
+	<div>
+		<c:if test="${currentPage>1}">
+		<a href="${pageContext.request.contextPath}/getNoticeByPage?currentPage=${currentPage-1}">이전</a>
 	</c:if>
-	<c:if test="${currentPage<lastPage}">
-		<li class="next"><a href="${pageContext.request.contextPath}/getNoticeBypage?currentPage=${currentPage+1}">다음</a></li>
+		<c:if test="${currentPage < lastPage}">
+		<a href="${pageContext.request.contextPath}/getNoticeByPage?currentPage=${currentPage+1}">다음</a>
 	</c:if>
-	</ul>
-	<a href="${pageContext.request.contextPath}/addNotice">수정</a>
 	</div>
+	<a href="${pageContext.request.contextPath}/addNotice">공지사항 추가</a>
 	</div>
 </body>
 </html>
