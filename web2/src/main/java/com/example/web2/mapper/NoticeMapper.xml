@@ -36,19 +36,21 @@
 				and notice_pw = #{noticePw}
 
 		</update>
-		
-	<!-- 공지사항 입력 -->
-		<insert id="insertNotice"
-		parameterType="com.example.web2.vo.Notice">
-			insert into notice(notice_no, notice_title, notice_content, notice_pw, create_date
-			)values(
-			#{noticeNo}
-			, #{noticeTitle}
-			, #{noticeContent}
-			, #{noticePw}
-			, #{createDate}
-			)
-		</insert>
+		<!-- 입력 -->
+	<insert id = "insertNotice"
+				parameterType = "com.example.web2.vo.Notice">
+		insert into notice(
+		notice_title
+		,notice_content
+		,notice_pw
+		,create_date
+		) values (
+			#{noticeTitle}
+			,#{noticeContent}
+			,#{noticePw}			
+			,now()
+		)
+	</insert>
 		<!-- 전체 글의수 -->
 		<select id="selectTotalCount"
 			resultType="int">

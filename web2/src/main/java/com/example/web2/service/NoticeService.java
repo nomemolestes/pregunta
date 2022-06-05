@@ -15,6 +15,9 @@ import com.example.web2.vo.Notice;
 @Transactional
 public class NoticeService {
 	@Autowired NoticeMapper noticeMapper;
+	//댓글+원문보기
+	
+	//댓글삭제
 	//입력
 	public int addNotice(Notice notice) {
 		return noticeMapper.insertNotice(notice);

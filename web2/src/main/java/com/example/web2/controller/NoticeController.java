@@ -18,11 +18,18 @@ import lombok.extern.slf4j.Slf4j;
 @Controller//서블릿역할
 public class NoticeController {
 	@Autowired NoticeService noticeService;
-	//공지사항 입력
+
+	//공지사항 입력폼
+	@GetMapping("/addNotice")
+	public String addNotice() {
+		return "addNotice";
+	}
+	//공지사항 입력액션
 	@PostMapping("/addNotice")
 	public String addNotice(Notice notice) {
-		noticeService.addNotice(notice);
-		return "addNotice";
+		Integer row = noticeService.addNotice(notice);
+		log.debug("[김하늬]NoticeController.addNotice.param.notice : ",notice);
+		return "redirect:/getNoticeByPage";//입력 후 목록으로..
 	}
 	//공지사항 삭제폼
 	@GetMapping("/removeNotice")
@@ -45,7 +52,7 @@ public class NoticeController {
 		log.debug("NoticeController.modifyNotice.param.notice : ", notice);
 		noticeService.modifyNotice(notice);
 		log.debug("NoticeController.modifyNotice.param.notice : ", notice);
-		return "redirect:/getNoticeOne?noticeNo="+notice.getNoticeNo();//상세보기 컨트롤러로 redirect
+		return "redirect:/getNoticeOne?noticeNo="+notice.getNoticeNo();//상세보기 컨트롤러로 redirect 그렇기때문에 noticeNo와 함께 감..
 		
 	}
 	//공지사항 수정폼
